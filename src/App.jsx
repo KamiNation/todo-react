@@ -61,12 +61,26 @@ function App() {
     setToDo([...array])
   }
 
+  const currentDate = new Date();
+  const currentDate1 = currentDate.getDay();
 
+  const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+  const dDate = dayNames[currentDate1];
+
+  console.log(dDate);
+
+  let type = "A weekday";
+  let adv = "Keep Bombing!";
+
+if (currentDate1 === 0 || currentDate1 === 6){
+    type = "A weekend";
+    adv = "Rest";
+}
 
   return (
     <>
-
-      <Header value={input} change={() => nameChange(event.target.value)} btnFunc={addToArray}></Header>
+      <Header cDate={dDate} value={input} change={() => nameChange(event.target.value)} btnFunc={addToArray} advice={adv}>Hey, today is, </Header>
       {
         todo.map((item, index) => {
           return(<p>{item} <button onClick={()=>editArray(index)}>Edit</button><button onClick={()=>deleteArray(index)}>Delete</button></p>)
